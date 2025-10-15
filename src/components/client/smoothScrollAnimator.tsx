@@ -3,17 +3,18 @@
 import React from 'react';
 import {gsap} from "gsap";
 import {useGSAP} from "@gsap/react";
+import {ScrollTrigger} from "gsap/ScrollTrigger";
 import {ScrollSmoother} from "gsap/ScrollSmoother";
 
-function GlobalAnimator() {
+function SmoothScrollAnimator() {
     useGSAP(() => {
-        gsap.registerPlugin(ScrollSmoother);
+        gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
         ScrollSmoother.create({});
     });
 
     return (
-        <div className="fixed"></div>
+        <div className="absolute"></div>
     );
 }
 
-export default GlobalAnimator;
+export default SmoothScrollAnimator;

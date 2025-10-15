@@ -4,10 +4,11 @@ import React from 'react';
 import {gsap} from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
 import {useGSAP} from "@gsap/react";
+import {SplitText} from "gsap/SplitText";
 
 function GalleryAnimator() {
     useGSAP(() => {
-       gsap.registerPlugin(ScrollTrigger);
+       gsap.registerPlugin(ScrollTrigger, SplitText);
 
         initGalleryAnimations();
         window.addEventListener("resize", initGalleryAnimations);
@@ -41,7 +42,7 @@ function GalleryAnimator() {
             const screenWidth = window.innerWidth;
             const screenHeight = window.innerHeight;
             const isMobile = screenWidth < 1000;
-            const scatterMultiplier = isMobile ? 2.5 : 0.4;
+            const scatterMultiplier = isMobile ? 2.5 : 0.5;
 
             const startPositions = Array.from(images).map(() => ({
                 x: 0,
@@ -63,10 +64,9 @@ function GalleryAnimator() {
 
             ScrollTrigger.create({
                 trigger: "#gallery",
-                start: "top top",
+                start: `top top`,
                 end: `${window.innerHeight * 5}px`,
                 pin: true,
-                pinSpacing: true,
                 scrub: 1,
                 onUpdate: (self) => {
                     const progress = self.progress;
@@ -88,20 +88,66 @@ function GalleryAnimator() {
                         const xVal = gsap.utils.interpolate(start.x, end.x, imageProgress);
                         const yVal = gsap.utils.interpolate(start.y, end.y, imageProgress);
 
+                        let opacityVal = 1;
+                        if (imageProgress === 1) {
+                            opacityVal = 0;
+                        }
+                        if (imageProgress >= 0.9){
+                            opacityVal = gsap.utils.interpolate(
+                                1,
+                                0,
+                                (imageProgress - 0.9) / 0.1
+                            );
+                        }
+
                         gsap.set(image, {
                             x: xVal,
                             y: yVal,
                             z: zVal,
                             scale: scaleVal,
+                            opacity: opacityVal,
                         })
                     });
                 },
             });
         }
+
+        const galleryText = document.getElementById("gallery-text");
+        const gtSplit = new SplitText(galleryText, {type: "words"});
+        gsap.set(gtSplit.words, {y: 30, opacity: 0,});
+
+        gsap.fromTo(gtSplit.words, {
+            y: 30,
+            opacity: 0,
+        }, {
+            y: 0,
+            opacity: 1,
+            stagger: 0.2,
+            scrollTrigger: {
+                trigger: "#gallery",
+                start: `top top`,
+                end: `+=${window.innerHeight * 2.5}px`,
+                scrub: 1,
+            }
+        });
+        gsap.fromTo(gtSplit.words, {
+            y: 0,
+            opacity: 1,
+        }, {
+            y: -60,
+            opacity: 0,
+            stagger: 0.2,
+            scrollTrigger: {
+                trigger: "#gallery",
+                start: `+=${window.innerHeight * 2.5}px`,
+                end: `+=${window.innerHeight * 3.5}px`,
+                scrub: 1,
+            }
+        });
     });
 
     return (
-        <div className="fixed"></div>
+        <div className="absolute"></div>
     );
 }
 

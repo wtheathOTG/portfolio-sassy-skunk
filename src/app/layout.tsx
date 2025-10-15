@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Manrope } from 'next/font/google'
 import './globals.css'
-import GlobalAnimator from "@/components/client/GlobalAnimator";
+import SmoothScrollAnimator from "@/components/client/smoothScrollAnimator";
 
 const manrope = Manrope({
     subsets: ['latin'],
     variable: '--font-manrope',
-    weight: ['200', '400', '800'],
+    weight: ['200', '300', '400', '800'],
 })
 
 const geistSans = Geist({
@@ -33,12 +33,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${manrope.variable} antialiased`}
+        className={`${manrope.variable} antialiased bg-zinc-950`}
       >
       <div id="smooth-content">
           {children}
       </div>
-      <GlobalAnimator />
+      <SmoothScrollAnimator />
       </body>
     </html>
   );

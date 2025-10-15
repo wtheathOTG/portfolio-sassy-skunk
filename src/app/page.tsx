@@ -1,16 +1,16 @@
-
-import ChillaAnimator from "@/components/client/ChillaAnimator";
-import Gallery from "@/components/server/gallery";
-import Chilla from "@/components/server/Chilla";
+import React from "react";
+import HorizontalScroll from "@/components/server/horizontalScroll";
 
 export default function Home() {
   return (
-   <div className="bg-zinc-950">
-       <div className="flex justify-center items-center w-full h-screen">
-           <h1 className="text-9xl font-extrabold">Text</h1>
+   <div>
+       <div id="intro" className="relative w-full h-screen flex justify-center items-center">
+           <h1 className="text-7xl font-extrabold">Intro Text</h1>
        </div>
-       <Gallery />
-       <Chilla />
+       <HorizontalScroll />
+       <div id="outro" className="relative w-full h-screen flex justify-center items-center">
+           <h1 className="text-7xl font-extrabold">Outro Text</h1>
+       </div>
    </div>
   );
 }

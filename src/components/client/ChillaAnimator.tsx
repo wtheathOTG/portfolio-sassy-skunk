@@ -10,39 +10,44 @@ function ChillaAnimator() {
         gsap.registerPlugin(ScrollTrigger);
 
         ScrollTrigger.create({
-           trigger: "#chilla-section",
-           start: "top bottom",
-           end: "top top",
-           scrub: 1,
-           onUpdate: (self) => {
-               const texts = document.querySelectorAll(".chilla-text");
-               gsap.set(texts[0], { x: `${-100 + self.progress * 100}%`});
-               gsap.set(texts[1], { x: `${100 - self.progress * 100}%`});
-           },
-        });
-
-        ScrollTrigger.create({
             trigger: "#chilla-section",
             start: "top top",
-            end: `top+=${window.innerHeight} top`,
+            end: `top+=${window.innerHeight * 2} top`,
             pin: true,
             pinSpacing: true,
             scrub: 1,
             onUpdate: (self) => {
-                const texts = document.querySelectorAll(".chilla-text");
-                gsap.set(texts[0], { y: `${self.progress * -50}%`});
-                gsap.set(texts[1], { y: `${self.progress * 50}%`});
-                gsap.set(texts[2], {
-                    scale: `${self.progress}`,
-                    transformOrigin: "center center",
-                    y: "-150%"
-                });
-            }
+                const progress = self.progress;
+
+                if (progress <= 0.5) {
+                    const slideProgress = progress / 0.5;
+
+                    const texts = document.querySelectorAll(".chilla-text");
+                    gsap.set(texts[0], { x: `${-100 + slideProgress * 100}%`});
+                    gsap.set(texts[1], { x: `${100 - slideProgress * 100}%`});
+                    gsap.set(texts[2], {
+                        scale: "0",
+                        transformOrigin: "center center",
+                        y: "-150%"
+                    });
+                }
+                else {
+                    const scaleProgress = (progress -0.5) / 0.5;
+                    const texts = document.querySelectorAll(".chilla-text");
+                    gsap.set(texts[0], { x: 0, y: `${scaleProgress * -50}%`});
+                    gsap.set(texts[1], { x: 0, y: `${scaleProgress * 50}%`});
+                    gsap.set(texts[2], {
+                        scale: `${scaleProgress}`,
+                        transformOrigin: "center center",
+                        y: "-150%"
+                    });
+                }
+            },
         });
     });
 
     return (
-        <div className="fixed"></div>
+        <div className="absolute"></div>
     );
 }
 
