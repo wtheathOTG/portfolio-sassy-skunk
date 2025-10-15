@@ -1,0 +1,15 @@
+export const galleryImages: string[] = [
+    "/cat.png",
+    "/cat.png",
+    "/cat.png",
+    "/cat.png",
+    "/cat.png",
+    "/cat.png",
+    "/cat.png",
+    "/cat.png",
+    "/cat.png",
+    "/cat.png",
+    "/cat.png",
+    "/cat.png",
+    "/cat.png",
+];
