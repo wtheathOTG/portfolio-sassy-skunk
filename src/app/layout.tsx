@@ -1,6 +1,14 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import { Manrope } from 'next/font/google'
+import './globals.css'
+import GlobalAnimator from "@/components/client/GlobalAnimator";
+
+const manrope = Manrope({
+    subsets: ['latin'],
+    variable: '--font-manrope',
+    weight: ['200', '400', '800'],
+})
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,9 +33,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${manrope.variable} antialiased`}
       >
-        {children}
+      <div id="smooth-content">
+          {children}
+      </div>
+      <GlobalAnimator />
       </body>
     </html>
   );
