@@ -22,10 +22,10 @@ function HeroAnimator() {
                   const progress = self.progress;
 
                   if (progress == 0) {
-                      heroHeading.style.letterSpacing = "0.125rem";
+                      heroHeading.style.letterSpacing = "0";
                   }
                   else {
-                      heroHeading.style.letterSpacing = `${0.125 + progress * progress * 20}rem`;
+                      heroHeading.style.letterSpacing = `${progress * progress * 20}rem`;
                   }
 
                   if (progress >= 0.95) {

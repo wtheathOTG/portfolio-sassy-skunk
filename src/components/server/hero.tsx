@@ -7,7 +7,7 @@ function Hero() {
             <h1
                 id="hero-heading"
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-                         text-8xl w-[300vw] text-center z-10"
+                         text-8xl w-[500vw] text-center z-10 font-bold"
             >
                 Intro Text
             </h1>

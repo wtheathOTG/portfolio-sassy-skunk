@@ -8,6 +8,30 @@ import { GFS_Didot } from "next/font/google";
 
 import localFont from "next/font/local";
 
+const neueHaas = localFont({
+    src: [
+        { path: "./fonts/neue-haas/NeueHaasDisplayMedium.ttf", weight: "500", style: "normal" },
+        { path: "./fonts/neue-haas/NeueHaasDisplayBold.ttf", weight: "700", style: "normal" },
+        { path: "./fonts/neue-haas/NeueHaasDisplayBlack.ttf", weight: "900", style: "normal" },
+    ],
+    display: "swap",
+    variable: "--font-neue-haas",
+});
+
+const kyoto = localFont({
+    src: [
+        { path: "./fonts/kyoto/PPKyoto-ThinItalic.otf", weight: "100", style: "italic" },
+        { path: "./fonts/kyoto/PPKyoto-Thin.otf", weight: "100", style: "normal" },
+        { path: "./fonts/kyoto/PPKyoto-LightItalic.otf", weight: "300", style: "italic" },
+        { path: "./fonts/kyoto/PPKyoto-Light.otf", weight: "300", style: "normal" },
+        { path: "./fonts/kyoto/PPKyoto-LightItalic.otf", weight: "300", style: "italic" },
+        { path: "./fonts/kyoto/PPKyoto-Medium.otf", weight: "400", style: "normal" },
+        { path: "./fonts/kyoto/PPKyoto-MediumItalic.otf", weight: "400", style: "italic" },
+    ],
+    display: "swap",
+    variable: "--font-kyoto",
+});
+
 const neueMontreal = localFont({
     src: [
         { path: "./fonts/neue-montreal/PPNeueMontreal-Thin.otf", weight: "100", style: "normal" },
@@ -55,7 +79,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${neueMontreal.variable} font-sans font-extrabold antialiased bg-zinc-950`}
+        className={`${neueHaas.variable} font-sans antialiased bg-zinc-950`}
       >
       <div id="smooth-content">
           {children}
