@@ -1,8 +1,30 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import { Manrope } from 'next/font/google'
 import './globals.css'
 import SmoothScrollAnimator from "@/components/client/smoothScrollAnimator";
+
+import { Geist, Geist_Mono } from "next/font/google";
+import { Manrope } from 'next/font/google'
+import { GFS_Didot } from "next/font/google";
+
+import localFont from "next/font/local";
+
+const neueMontreal = localFont({
+    src: [
+        { path: "./fonts/neue-montreal/PPNeueMontreal-Thin.otf", weight: "100", style: "normal" },
+        { path: "./fonts/neue-montreal/PPNeueMontreal-Book.otf", weight: "400", style: "normal" },
+        { path: "./fonts/neue-montreal/PPNeueMontreal-Medium.otf", weight: "700", style: "normal" },
+        { path: "./fonts/neue-montreal/PPNeueMontreal-Bold.otf", weight: "800", style: "normal" },
+    ],
+    display: "swap",
+    variable: "--font-neue-montreal",
+});
+
+const gfsDidot = GFS_Didot({
+    weight: "400",
+    subsets: ["latin"],
+    variable: "--font-gfs-didot",
+    display: "swap",
+});
 
 const manrope = Manrope({
     subsets: ['latin'],
@@ -33,7 +55,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${manrope.variable} antialiased bg-zinc-950`}
+        className={`${neueMontreal.variable} font-sans font-extrabold antialiased bg-zinc-950`}
       >
       <div id="smooth-content">
           {children}

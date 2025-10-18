@@ -9,7 +9,9 @@ import {ScrollSmoother} from "gsap/ScrollSmoother";
 function SmoothScrollAnimator() {
     useGSAP(() => {
         gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
-        ScrollSmoother.create({});
+        ScrollSmoother.create({
+            effects: true,
+        });
     });
 
     return (

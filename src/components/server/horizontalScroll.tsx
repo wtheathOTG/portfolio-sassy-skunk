@@ -5,7 +5,7 @@ function HorizontalScroll() {
     return (
         <div
             id="horizontal-scroll"
-            className="relative w-full h-screen overflow-hidden"
+            className="relative w-full h-screen overflow-hidden z-[-10]"
         >
             <div
                 id="horizontal-scroll-wrapper"
